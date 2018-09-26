@@ -4,7 +4,7 @@ import template from './side-toolbar.pug'
 import capitalize from '../../../lib/transforms/capitalize'
 import autoUpdater from '../../../lib/auto-updater'
 
-angular.module('tc').component('sideToolbar', {template, controller})
+angular.module('xtc').component('sideToolbar', {template, controller})
 
 function controller ($mdDialog, settingsGui, irc, openExternal, settings) {
   const vm = this

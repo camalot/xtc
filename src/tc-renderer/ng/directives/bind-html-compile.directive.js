@@ -1,6 +1,6 @@
 import angular from 'angular'
 
-angular.module('tc').directive('bindHtmlCompile', ($compile) => {
+angular.module('xtc').directive('bindHtmlCompile', ($compile) => {
   return {
     restrict: 'A',
     link: (scope, element, attrs) => {

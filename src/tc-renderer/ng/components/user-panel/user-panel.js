@@ -4,7 +4,7 @@ import template from './user-panel.pug'
 import {user} from '../../../lib/api'
 import capitalize from '../../../lib/transforms/capitalize'
 
-angular.module('tc').component('userPanel', {template, controller})
+angular.module('xtc').component('userPanel', {template, controller})
 
 function controller ($scope, $document, session, irc, openExternal, settings) {
   const vm = this

@@ -1,18 +1,18 @@
-# Tc, the chat client for Twitch :smile: [gettc.xyz](http://gettc.xyz)
+# xTc, the chat client for Twitch :smile:
 
 ![](./src/assets/icon256.png)
 
-Tc is a cross-platform desktop chat client for [Twitch.tv](http://www.twitch.tv/).
+xTc is a cross-platform desktop chat client for [Twitch.tv](http://www.twitch.tv/).
 
 ### Options for contacting me
 - Open an issue on GitHub
-- My [personal Twitter](https://twitter.com/k3nt0456)
+- My [personal Twitter](https://twitter.com/abryanconrad)
 - Tc's [Twitter](https://twitter.com/tctwitch)
 
 ---
 
 ### For developers
-Running Tc in dev mode *should* be simple. If the instructions below aren't
+Running xTc in dev mode *should* be simple. If the instructions below aren't
 working then please open an issue.
 
 - Clone the repo

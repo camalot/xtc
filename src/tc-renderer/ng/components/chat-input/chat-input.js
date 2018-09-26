@@ -6,7 +6,7 @@ import {getChatterNames} from '../../../lib/chatters'
 import emotesFfz from '../../../lib/emotes/ffz'
 import emotesBttv from '../../../lib/emotes/bttv'
 
-angular.module('tc').component('chatInput', {template, controller})
+angular.module('xtc').component('chatInput', {template, controller})
 
 // eslint-disable-next-line
 function controller ($scope, $element, session, irc, messages, emotesTwitch, settings) {

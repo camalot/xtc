@@ -5,9 +5,9 @@ import channels from '../../../lib/channels'
 import * as api from '../../../lib/api'
 import * as R from 'ramda'
 
-angular.module('tc').component('chatTabs', {template, controller})
+angular.module('xtc').component('chatTabs', {template, controller})
 
-function controller ($scope, $timeout, messages, settings) {
+function controller ($scope, $timeout, messages, merged, settings) {
   const vm = this
 
   vm.$onInit = () => {

@@ -5,7 +5,7 @@ import electron from 'electron'
 import channels from '../../lib/channels'
 import processMessage from '../../lib/transforms/process-message'
 
-angular.module('tc').factory('messages', (
+angular.module('xtc').factory('messages', (
   $rootScope, irc, highlights, session, settings) => {
   // =====================================================
   // Variables
@@ -25,9 +25,10 @@ angular.module('tc').factory('messages', (
   getMissingMessagesOnReconnect()
   deleteExtraMessagesOnAutoscrollEnabled()
   channels.channels.forEach(make)
-  announceTwitter()
   channels.on('add', make)
-  channels.on('remove', (channel) => delete messages[channel])
+  channels.on('remove', (channel) => {
+    delete messages[channel]
+  })
 
   // =====================================================
   // Public methods
@@ -47,6 +48,7 @@ angular.module('tc').factory('messages', (
   /** Adds a message with the 'whisper' type */
   function addWhisper (from, to, message) {
     settings.channels.forEach((channel) => {
+
       addMessage(channel, {
         type: 'whisper',
         from: typeof from === 'string' ? from : from.username,
@@ -65,12 +67,12 @@ angular.module('tc').factory('messages', (
   // Private methods
   // =====================================================
 
-  function announceTwitter () {
-    const ver = electron.remote.app.getVersion()
-    const channel = settings.channels[settings.selectedTabIndex]
-    if (!channel) return
-    addNotification(channel, `v${ver} - see twitter.com/tctwitch for changes.`)
-  }
+  // function announceTwitter () {
+  //   const ver = electron.remote.app.getVersion()
+  //   const channel = settings.channels[settings.selectedTabIndex]
+  //   if (!channel) return
+  //   addNotification(channel, `v${ver} - see twitter.com/tctwitch for changes.`)
+  // }
 
   function getMissingMessagesOnReconnect () {
     irc.on('disconnected', () => {
@@ -266,6 +268,7 @@ angular.module('tc').factory('messages', (
   function make (channel) {
     messages[channel] = []
     messages[channel].counter = 0
+    merged[channel] = []
     getMissingMessages(channel)
   }
 

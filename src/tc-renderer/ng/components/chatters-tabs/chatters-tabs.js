@@ -2,7 +2,7 @@ import './chatters-tabs.styl'
 import angular from 'angular'
 import template from './chatters-tabs.pug'
 
-angular.module('tc').component('chattersTabs', {template, controller})
+angular.module('xtc').component('chattersTabs', {template, controller})
 
 function controller (settings) {
   const vm = this

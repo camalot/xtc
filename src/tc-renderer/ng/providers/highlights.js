@@ -1,6 +1,6 @@
 import angular from 'angular'
 
-angular.module('tc').factory('highlights', function (settings) {
+angular.module('xtc').factory('highlights', function (settings) {
   return {
     /**
      * Test if a string matches any of the saved highlighted phrases.

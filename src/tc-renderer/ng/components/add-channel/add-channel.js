@@ -3,7 +3,7 @@ import angular from 'angular'
 import template from './add-channel.pug'
 import {ipcRenderer as ipc} from 'electron'
 
-angular.module('tc').component('addChannel', {template, controller})
+angular.module('xtc').component('addChannel', {template, controller})
 
 function controller (settings) {
   const vm = this

@@ -19,7 +19,7 @@ export default function makeTrayIconOnWindows () {
 
   tray.setContextMenu(Menu.buildFromTemplate([
     {
-      label: 'Run Tc when my computer starts',
+      label: 'Run xTc when my computer starts',
       type: 'checkbox',
       checked: settings.behavior.autoStart,
       click: function () {

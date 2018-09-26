@@ -4,11 +4,11 @@ import ngSanitize from 'angular-sanitize'
 import mobxAngular from 'mobx-angularjs'
 import 'angular-material/angular-material.css'
 
-const app = angular.module('tc', [ngMaterial, ngSanitize, mobxAngular])
+const app = angular.module('xtc', [ngMaterial, ngSanitize, mobxAngular])
 
 // Set default controllerAs for components to 'vm' instead of '$ctrl'
-const componentUsingVm = angular.module('tc').component
-angular.module('tc').component = function component (name, options) {
+const componentUsingVm = angular.module('xtc').component
+angular.module('xtc').component = function component (name, options) {
   return componentUsingVm(name, angular.extend({controllerAs: 'vm'}, options))
 }
 

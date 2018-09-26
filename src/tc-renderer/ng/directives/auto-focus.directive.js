@@ -1,6 +1,6 @@
 import angular from 'angular'
 
-angular.module('tc').directive('autoFocus', ($timeout) => {
+angular.module('xtc').directive('autoFocus', ($timeout) => {
   return {
     link: (s, element) => $timeout(() => element[0].focus(), 300)
   }

@@ -12,7 +12,7 @@ import {getModBadge} from '../../../lib/emotes/ffz'
 import {sleep} from '../../../lib/util'
 import {badges} from '../../../lib/api'
 
-angular.module('tc').component('chatOutput', {
+angular.module('xtc').component('chatOutput', {
   template,
   controller,
   bindings: {channel: '<'}
@@ -70,8 +70,12 @@ function controller($scope, $element, $sce, $timeout, messages, session, irc, op
   vm.messageInlineStyles = messageInlineStyles
   vm.displayNameIsDifferent = displayNameIsDifferent
   vm.timeout = timeout
+  vm.ban = ban
   vm.canModHere = canModHere
   vm.isModableMessage = isModableMessage
+  vm.isPurgeVisible = isPurgeVisible
+  vm.isTimeoutVisible = isTimeoutVisible
+  vm.isBanVisible = isBanVisible
 
   // ===============================================================
   // Functions
@@ -117,9 +121,26 @@ function controller($scope, $element, $sce, $timeout, messages, session, irc, op
     return badge.image_url_1x
   }
 
+  function isBanVisible (m) {
+    return !m.deleted && vm.settings.chat.modactions.ban.visible
+  }
+
+  function isPurgeVisible (m) {
+    return !m.deleted && vm.settings.chat.modactions.purge.visible
+  }
+
+  function isTimeoutVisible (m) {
+    return !m.deleted && vm.settings.chat.modactions.timeout.visible
+  }
+
   function timeout (m, seconds) {
     if (!m.user) return
     irc.say(`#${vm.channel}`, `.timeout ${m.user.username} ${seconds}`)
+  }
+
+  function ban (m) {
+    if (!m.user) return
+    irc.say(`#${vm.channel}`, `.ban ${m.user.username}`)
   }
 
   function canModHere () {

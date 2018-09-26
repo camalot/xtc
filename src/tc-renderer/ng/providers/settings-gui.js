@@ -2,7 +2,7 @@ import angular from 'angular'
 import template from '../components/settings-panel/settings-gui-dialog.pug'
 import '../components/settings-panel/settings-gui-dialog.styl'
 
-angular.module('tc').factory('settingsGui', function ($mdDialog, $rootElement) {
+angular.module('xtc').factory('settingsGui', function ($mdDialog, $rootElement) {
   return {
     /**
      * Shows the options page.

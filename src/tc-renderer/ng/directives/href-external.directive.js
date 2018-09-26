@@ -8,7 +8,7 @@ import angular from 'angular'
  * Reads the href-external attribute and opens the
  * url in the system's default web browser
  */
-angular.module('tc').directive('hrefExternal', (openExternal) => {
+angular.module('xtc').directive('hrefExternal', (openExternal) => {
   return {
     restrict: 'A',
     link: (scope, element, attrs) => {

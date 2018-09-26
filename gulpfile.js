@@ -65,17 +65,17 @@ function build (platform) {
     shell.exec('npm run dist:linux')
     shell.mv('dist/*.AppImage', '_dist/')
     shell.find('_dist').filter((f) => f.endsWith('.AppImage')).forEach((f) => {
-      shell.mv(f, f.replace('Tc-', 'tc-linux-').replace('-x86_64', ''))
+      shell.mv(f, f.replace('xTc-', 'xtc-linux-').replace('-x86_64', ''))
     })
   } else if (platform === 'mac') {
     shell.exec('npm run dist:mac')
     shell.mv('dist/*.dmg', '_dist/')
     shell.mv('dist/*.zip', '_dist/')
     shell.find('_dist').filter((f) => f.endsWith('.dmg')).forEach((f) => {
-      shell.mv(f, f.replace('Tc', 'tc-setup-mac'))
+      shell.mv(f, f.replace('xTc', 'xtc-setup-mac'))
     })
     shell.find('_dist').filter((f) => f.endsWith('.zip')).forEach((f) => {
-      const newName = f.replace('-mac', '').replace('Tc', 'tc-mac')
+      const newName = f.replace('-mac', '').replace('xTc', 'xtc-mac')
       shell.mv(f, newName)
     })
   }

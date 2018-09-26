@@ -6,7 +6,7 @@ export default () => {
 
   let template = [
     {
-      label: 'Tc',
+      label: 'xTc',
       submenu: [
         {
           label: 'Quit',

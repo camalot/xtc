@@ -7,6 +7,6 @@ import angular from 'angular'
  * @ngdoc factory
  * @name session
  */
-angular.module('tc').factory('session', function () {
+angular.module('xtc').factory('session', function () {
   return {}
 })

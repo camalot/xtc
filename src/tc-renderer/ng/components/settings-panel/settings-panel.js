@@ -5,7 +5,7 @@ import template from './settings-panel.pug'
 import replacements from '../../../lib/data/replacements.json'
 import autoUpdater from '../../../lib/auto-updater'
 
-angular.module('tc').directive('settingsPanel', (
+angular.module('xtc').directive('settingsPanel', (
   highlights,
   notifications,
   $mdToast,
@@ -16,13 +16,13 @@ angular.module('tc').directive('settingsPanel', (
     scope.settings = settings
     scope.m = {
       version: electron.remote.app.getVersion(),
-      selected: 'tc'
+      selected: 'xtc'
     }
 
-    scope.tc = {
+    scope.xtc = {
       checkedForUpdate: false,
       checkForUpdates () {
-        scope.tc.checkedForUpdate = true
+        scope.xtc.checkedForUpdate = true
         const a = autoUpdater
         a.once('error', updateError)
         a.once('update-available', updateAvailableToast)

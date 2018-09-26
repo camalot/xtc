@@ -13,7 +13,7 @@ import {addTwitchEmotesets} from '../../lib/emotes/menu'
  *
  * @return {{emote: string}[]} May be empty if it hasn't been cached yet
  */
-angular.module('tc').factory('emotesTwitch', function (irc) {
+angular.module('xtc').factory('emotesTwitch', function (irc) {
   const emotes = []
 
   irc.on('emotesets', function (setsString, setsObject) {

@@ -4,7 +4,7 @@ import template from './chatters.pug'
 import {getChattersApi} from '../../../lib/chatters'
 import prettyChatterNames from '../../../lib/transforms/pretty-chatter-names'
 
-angular.module('tc').component('chatters', {
+angular.module('xtc').component('chatters', {
   template,
   controller,
   bindings: {channel: '<'}

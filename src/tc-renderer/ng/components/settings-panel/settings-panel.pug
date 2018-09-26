@@ -41,9 +41,9 @@ md-sidenav.settings-sidebar.md-sidenav-left.md-whiteframe-z2.menu(
   layout='column',
   mobx-autorun
 )
-  md-content.tc(
+  md-content.xtc(
     flex='',
-    ng-switch-when='tc',
+    ng-switch-when='xtc',
     layout='column',
     layout-align='center center'
   )
@@ -55,8 +55,8 @@ md-sidenav.settings-sidebar.md-sidenav-left.md-whiteframe-z2.menu(
       a(href-external='http://gettc.xyz/') gettc.xyz
     p
       md-button(
-        ng-click='tc.checkForUpdates()',
-        ng-disabled='tc.checkedForUpdate'
+        ng-click='xtc.checkForUpdates()',
+        ng-disabled='xtc.checkedForUpdate'
       ) Check for updates
   md-content.highlights(ng-switch-when='highlights')
     h1.md-headline Highlighted phrases
@@ -157,8 +157,40 @@ md-sidenav.settings-sidebar.md-sidenav-left.md-whiteframe-z2.menu(
       | Use dark theme
     md-switch(ng-model='settings.chat.timestamps')
       | Show time stamps
-    md-switch(ng-model='settings.chat.modactions')
+    md-switch(ng-model='settings.chat.modactions.enabled')
       | Show inline moderator actions
+    div(ng-if='settings.chat.modactions.enabled')
+      md-divider
+      h3.md-headline Inline Moderator Action Settings
+      label
+        | Purge (seconds)
+      md-slider(
+        ng-model='settings.chat.modactions.purge.value',
+        flex='',
+        md-discrete='',
+        min='1',
+        max='30',
+        step='1',
+      )
+      md-switch(ng-model='settings.chat.modactions.purge.visible')
+        | Show purge action
+      label
+        | Timeout (in seconds)
+      md-slider(
+        ng-if='settings.chat.modactions.enabled',
+        ng-model='settings.chat.modactions.timeout.value',
+        flex='',
+        md-discrete='',
+        min='1',
+        max='3600',
+        step='5'
+      )
+      md-switch(ng-model='settings.chat.modactions.timeout.visible')
+        | Show timeout action
+      md-switch(ng-model='settings.chat.modactions.ban.visible')
+        | Show ban action
+      md-divider
+
     md-switch(ng-model='settings.appearance.split')
       | Split chat lines for more contrast
     md-switch(ng-model='settings.appearance.variableLineHeight')

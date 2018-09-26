@@ -12,12 +12,16 @@
     //- Split the two conditions so that one can be a one-time binding
     span(ng-if='vm.canModHere()')
       span.mod-actions(ng-if='::vm.isModableMessage(m)')
-        md-button(ng-if='!m.deleted' ng-click='vm.timeout(m, 30)')
-          md-tooltip(md-autohide='') Purge (30s)
+        md-button(ng-if='vm.isPurgeVisible(m)' ng-click='vm.timeout(m, vm.settings.chat.modactions.purge.value)')
+          md-tooltip(md-autohide='') Purge ({{::vm.settings.chat.modactions.purge.value}}s)
+          i.zmdi.zmdi-replay-5
+        md-button(ng-if='vm.isTimeoutVisible(m)' ng-click='vm.timeout(m, vm.settings.chat.modactions.timeout.value)')
+          md-tooltip(md-autohide='') Timeout ({{::vm.settings.chat.modactions.timeout.value}}s)
           i.zmdi.zmdi-time-restore
-        md-button(ng-if='m.deleted' ng-click='vm.timeout(m, 86400)')
-          md-tooltip(md-autohide='') Temporary ban (24h)
+        md-button(ng-if='vm.isBanVisible(m)' ng-click='vm.ban(m)')
+          md-tooltip(md-autohide='') Ban
           i.zmdi.zmdi-block
+
     span.badges(ng-if='::m.user')
       span.badge(
         ng-repeat='(name, version) in ::m.user.badges',

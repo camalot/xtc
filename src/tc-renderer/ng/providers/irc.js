@@ -30,7 +30,7 @@ import {EventEmitter} from 'events'
  * @property {function} credentialsValid
  *   - Returns true if the credentials appear valid. Not verified server side
  */
-angular.module('tc').factory('irc', ($rootScope, settings) => {
+angular.module('xtc').factory('irc', ($rootScope, settings) => {
   // ===============================================================
   // Variables
   // ===============================================================

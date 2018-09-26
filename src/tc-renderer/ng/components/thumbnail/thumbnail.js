@@ -6,7 +6,7 @@ import angular from 'angular'
 import template from './thumbnail.pug'
 import * as api from '../../../lib/api'
 
-angular.module('tc').component('thumbnail', {template, controller})
+angular.module('xtc').component('thumbnail', {template, controller})
 
 function controller ($scope, $element, irc, messages, openExternal, settings) {
   const vm = this

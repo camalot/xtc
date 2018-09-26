@@ -2,7 +2,7 @@ import './login.styl'
 import angular from 'angular'
 import template from './login.pug'
 
-angular.module('tc').component('login', {template, controller})
+angular.module('xtc').component('login', {template, controller})
 
 function controller (irc, openExternal, settings) {
   const vm = this

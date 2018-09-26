@@ -4,7 +4,7 @@ import angular from 'angular'
 import template from './emote-menu.pug'
 import {getAllCachedEmotes} from '../../../lib/emotes/menu'
 
-angular.module('tc').component('emoteMenu', {template, controller})
+angular.module('xtc').component('emoteMenu', {template, controller})
 
 function controller ($element, $timeout, session, settings) {
   const vm = this

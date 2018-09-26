@@ -1,5 +1,5 @@
 import angular from 'angular'
 
-angular.module('tc').factory('manifest', function () {
+angular.module('xtc').factory('manifest', function () {
   return require('../../../package.json')
 })

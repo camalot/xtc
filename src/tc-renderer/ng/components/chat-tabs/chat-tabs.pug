@@ -13,6 +13,17 @@ md-tabs.chat-tabs(
       i.zmdi.zmdi-chevron-right.move-right(ng-click='vm.moveRight($event, channel)')
     md-tab-body
       chat-output(channel='channel', ng-if='vm.isLoaded(channel)')
+
+  md-tab
+    md-tab-label
+      i.zmdi.zmdi-chevron-left.move-left(ng-click='vm.moveLeft($event, "#XTCMERGED")')
+      i.zmdi.zmdi-circle.live-indicator(ng-if='vm.live(channel) === "live"')
+      i.zmdi.zmdi-replay.rerun-indicator(ng-if='vm.live(channel) === "rerun"')
+      | *MERGED*
+      span.counter {{vm.unread()}}
+      i.zmdi.zmdi-chevron-right.move-right(ng-click='vm.moveRight($event, "#XTCMERGED")')
+    md-tab-body
+      chat-output(channel='#XTCMERGED', ng-if='vm.isLoaded("#XTCMERGED")')
   md-tab
     md-tab-label
       i.zmdi.zmdi-plus.zmdi-lg

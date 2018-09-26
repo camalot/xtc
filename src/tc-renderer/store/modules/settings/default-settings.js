@@ -5,7 +5,21 @@ export default {
   },
   chat: {
     timestamps: false,
-    modactions: true,
+    modactions: {
+      enabled: true,
+      purge: {
+        value: 3,
+        visible: true
+      },
+      timeout: {
+        value: 600,
+        visible: true
+      },
+      ban: {
+        visible: true
+      }
+    },
+
     ignored: []
   },
   notifications: {

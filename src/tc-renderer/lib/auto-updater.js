@@ -35,7 +35,7 @@ function check (autoUpdater, url) {
 
   function handleAutomaticCheckError (error) {
     console.warn('Unable to check for updates. ' +
-      'You\'re probably running Tc ' +
+      'You\'re probably running xTc ' +
       'in standalone mode, or the server is down.', error)
   }
 
