@@ -1,7 +1,6 @@
 import throttle from 'lodash.throttle'
 import angular from 'angular'
 import axios from 'axios'
-import electron from 'electron'
 import channels from '../../lib/channels'
 import processMessage from '../../lib/transforms/process-message'
 
@@ -48,7 +47,6 @@ angular.module('xtc').factory('messages', (
   /** Adds a message with the 'whisper' type */
   function addWhisper (from, to, message) {
     settings.channels.forEach((channel) => {
-
       addMessage(channel, {
         type: 'whisper',
         from: typeof from === 'string' ? from : from.username,
@@ -66,13 +64,6 @@ angular.module('xtc').factory('messages', (
   // =====================================================
   // Private methods
   // =====================================================
-
-  // function announceTwitter () {
-  //   const ver = electron.remote.app.getVersion()
-  //   const channel = settings.channels[settings.selectedTabIndex]
-  //   if (!channel) return
-  //   addNotification(channel, `v${ver} - see twitter.com/tctwitch for changes.`)
-  // }
 
   function getMissingMessagesOnReconnect () {
     irc.on('disconnected', () => {
@@ -268,7 +259,6 @@ angular.module('xtc').factory('messages', (
   function make (channel) {
     messages[channel] = []
     messages[channel].counter = 0
-    merged[channel] = []
     getMissingMessages(channel)
   }
 
