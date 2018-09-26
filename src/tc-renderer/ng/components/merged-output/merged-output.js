@@ -245,7 +245,7 @@ function controller($scope, $element, $sce, $timeout, mergedMessages, session, i
     NProgress.start()
     fetchingBacklog = true
     const old = distanceFromBottom()
-    await messages.getMoreBacklog(vm.channel)
+    await mergedMessages.getMoreBacklog(vm.channel)
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         scrollIfEnabled()
