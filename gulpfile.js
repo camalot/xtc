@@ -59,7 +59,7 @@ function build (platform) {
     shell.exec('npm run dist:windows')
     shell.mv('dist/squirrel-windows/*', '_dist/')
     shell.find('_dist').filter((f) => f.endsWith('.exe')).forEach((f) => {
-      shell.mv(f, f.replace('Tc Setup ', 'tc-setup-win-'))
+      shell.mv(f, f.replace('xTc Setup ', 'xtc-setup-win-'))
     })
   } else if (platform === 'linux') {
     shell.exec('npm run dist:linux')

@@ -1,10 +1,10 @@
 {
-  "name": "Tc",
+  "name": "xTc",
   "private": true,
   "version": "14.0.0",
   "main": "main.js",
   "node-remote": "http://localhost",
-  "author": "Andrea Stella <adr.stella@gmail.com>",
+  "author": "Ryan Conrad (camalot@gmail.com)",
   "description": "The chat client for Twitch",
   "devDependencies": {
     "angular": "^1.6.7",

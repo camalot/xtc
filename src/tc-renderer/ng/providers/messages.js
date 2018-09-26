@@ -86,7 +86,7 @@ angular.module('xtc').factory('messages', (
       () => {
         if (session.autoScroll) {
           channels.channels.forEach((channel) => {
-            const msgs = messages[channel]
+            const msgs = messages[channel].messages
             if (msgs.length > messageLimit) {
               msgs.splice(0, msgs.length - messageLimit)
             }
@@ -124,18 +124,18 @@ angular.module('xtc').factory('messages', (
   }
 
   function sortMessages (channel) {
-    messages[channel].sort((a, b) => a.at - b.at)
+    messages[channel].messages.sort((a, b) => a.at - b.at)
   }
 
   function trimMessages (channel) {
-    while (messages[channel].length > messageLimit) {
-      messages[channel].shift()
+    while (messages[channel].messages.length > messageLimit) {
+      messages[channel].message.shift()
     }
   }
 
   function dontHaveMessage (channel, obj) {
-    if (!messages[channel] || !obj.user || !obj.user.id) return true
-    return !messages[channel].find(msg => {
+    if (!messages[channel].messages || !obj.user || !obj.user.id) return true
+    return !messages[channel].messages.find(msg => {
       return msg.user ? msg.user.id === obj.user.id : false
     })
   }
@@ -178,7 +178,7 @@ angular.module('xtc').factory('messages', (
     const msg = processMessage(messageObject, channel, twitchEmotes)
 
     messageObject.message = msg
-    messages[channel].push(messageObject)
+    messages[channel].messages.push(messageObject)
 
     if ((type === 'chat' || type === 'action') && !fromBacklog) {
       messages[channel].counter++
@@ -186,8 +186,8 @@ angular.module('xtc').factory('messages', (
 
     // Too many messages in memory
     if (session.autoScroll && !fromBacklog) {
-      if (messages[channel].length > messageLimit) {
-        messages[channel].shift()
+      if (messages[channel].messages.length > messageLimit) {
+        messages[channel].messages.shift()
       }
     }
 
@@ -207,13 +207,13 @@ angular.module('xtc').factory('messages', (
   // =====================================================
 
   function earliestMessageTimestamp (channel) {
-    const msgs = messages[channel]
+    const msgs = messages[channel].messages
     if (!msgs || !msgs.length) return Date.now()
     else return msgs[0].at
   }
 
   function mostRecentMessageTimestamp (channel) {
-    const msgs = messages[channel]
+    const msgs = messages[channel].messages
     if (!msgs || !msgs.length) return 0
     else {
       const recentMessage = msgs.slice().reverse().find((msg) => {
@@ -237,14 +237,14 @@ angular.module('xtc').factory('messages', (
   /** Mark previous messages from this user as deleted */
   function timeoutFromChat (channel, username) {
     channel = channel.substring(1)
-    messages[channel].forEach((message) => {
+    messages[channel].messages.forEach(message => {
       if (message.user && message.user.username === username) {
         message.deleted = true
       }
     })
 
     if (settings.appearance.hideTimeouts) {
-      const arr = messages[channel]
+      const arr = messages[channel].messages
       for (let i = arr.length - 1; i >= 0; i--) {
         if (arr[i].deleted) arr.splice(i, 1)
       }
@@ -257,7 +257,10 @@ angular.module('xtc').factory('messages', (
   }
 
   function make (channel) {
-    messages[channel] = []
+    messages[channel] = {
+      messages: [],
+      counter: 0
+    }
     messages[channel].counter = 0
     getMissingMessages(channel)
   }

@@ -7,7 +7,7 @@ import * as R from 'ramda'
 
 angular.module('xtc').component('chatTabs', {template, controller})
 
-function controller ($scope, $timeout, messages, merged, settings) {
+function controller ($scope, $timeout, messages, mergedMessages, settings) {
   const vm = this
 
   vm.$onInit = () => {
@@ -24,7 +24,7 @@ function controller ($scope, $timeout, messages, merged, settings) {
     vm.moveRight = moveRight
     vm.live = liveStreamType
     vm.isLoaded = isLoaded
-
+    vm.leave = leave
     loadCurrentChannel()
     getStreams()
     channels.on('change', getStreams)
@@ -87,21 +87,48 @@ function controller ($scope, $timeout, messages, merged, settings) {
    * @returns {string|number}
    */
   function numberOfUnreadMessages (channel) {
-    if (currChannel() === channel) return ''
-    let unread = messages(channel).counter - (vm.readUntil[channel] || 0)
-    if (!unread) return ''
-    if (unread > 100) return '*'
-    else return unread
+    if (channel) {
+      if (currChannel() === channel) return ''
+      let unread = messages(channel).counter - (vm.readUntil[channel] || 0)
+      if (!unread) {
+        return ''
+      }
+      if (unread > 100) {
+        return '*'
+      } else {
+        return unread
+      }
+    } else {
+      return ''
+    }
   }
+
+  function leave (channel) {
+    console.log(channel)
+    console.log(vm.settings)
+    console.log(vm.settings.channels)
+    let idx = vm.settings.channels.indexOf(channel)
+    if (idx >= 0) {
+      vm.settings.channels.splice(idx, 1)
+    }
+  };
 
   function isAddTabSelected () {
     return settings.selectedTabIndex === settings.channels.length
   }
 
+  // function isMergedTabSelected () {
+  //   return settings.selectedTabIndex === settings.channels.length
+  // }
+
   function countUnreadMessages (channel) {
-    const lines = messages(channel)
-    if (lines) vm.readUntil[channel] = lines.counter
-    else delete vm.readUntil[channel] // Channel was left
+    if (channel) {
+      const lines = messages(channel)
+      if (lines) vm.readUntil[channel] = lines.counter
+      else delete vm.readUntil[channel] // Channel was left
+    } else {
+      return 0
+    }
   }
 
   function currChannel () {

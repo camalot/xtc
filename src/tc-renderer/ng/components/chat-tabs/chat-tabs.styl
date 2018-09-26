@@ -26,6 +26,7 @@ chat-tabs
 
   .md-tab
     padding-top: 7px !important
+    padding-right: 44px; // this adds a little space (20px) for the close button
 
   md-tab-label
     position: relative
@@ -42,6 +43,7 @@ chat-tabs
     opacity: 0
 
   .move-left,
+  .xtc-leave,
   .move-right
     outline: none
     cursor: pointer
@@ -54,11 +56,18 @@ chat-tabs
     left: 10px
 
   .move-right
+    right: 30px
+
+  .xtc-leave
     right: 10px
 
-  md-tab-item:hover .move-left,
-  md-tab-item:hover .move-right
-    opacity: 0.65
+  md-tab-item:hover
+    .move-left,
+    .move-right,
+    .xtc-leave
+      opacity: 0.65
+      &:hover
+        opacity: 1
 
   md-tab-item:first-of-type .move-left
     display: none

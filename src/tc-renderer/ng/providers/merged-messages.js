@@ -1,13 +1,14 @@
 import angular from 'angular'
 import channels from '../../lib/channels'
-import messages from './messages'
 
-angular.module('xtc').factory('merged-messages',
-  ($rootScope, irc, highlights, session, settings) => {
-    const merged = {}
+angular.module('xtc').factory('mergedMessages',
+  ($rootScope, irc, highlights, session, messages, settings) => {
+    let result = []
     channels.channels.forEach((c) => {
-      merged[c] = messages(c)
+      let m = messages(c).messages
+      console.log(m)
+      result = result.concat(m)
     })
-
-    return merged
+    console.log(result)
+    return result
   })

@@ -9,7 +9,7 @@ export default function keepTitleUpdated () {
   function update () {
     const settings = store.settings.state
     let prefix
-    const suffix = ' - Tc'
+    const suffix = ' - xTc'
     let channel = settings.channels[settings.selectedTabIndex]
     if (channel) prefix = capitalize(channel)
     else prefix = 'Join channel'

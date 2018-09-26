@@ -6,24 +6,24 @@ md-tabs.chat-tabs(
   md-tab(ng-repeat='channel in vm.settings.channels')
     md-tab-label
       i.zmdi.zmdi-chevron-left.move-left(ng-click='vm.moveLeft($event, channel)')
+        md-tooltip(md-autohide='', md-direction='right') Move Tab Left
       i.zmdi.zmdi-circle.live-indicator(ng-if='vm.live(channel) === "live"')
       i.zmdi.zmdi-replay.rerun-indicator(ng-if='vm.live(channel) === "rerun"')
       | {{channel}}
       span.counter {{vm.unread(channel)}}
+      i.zmdi.zmdi-close.xtc-leave(ng-click='vm.leave(channel)', aria-label='Leave channel')
+        md-tooltip(md-autohide='', md-direction='right') Leave Channel
       i.zmdi.zmdi-chevron-right.move-right(ng-click='vm.moveRight($event, channel)')
+        md-tooltip(md-autohide='', md-direction='right') Move Tab Right
     md-tab-body
       chat-output(channel='channel', ng-if='vm.isLoaded(channel)')
 
   md-tab
     md-tab-label
-      i.zmdi.zmdi-chevron-left.move-left(ng-click='vm.moveLeft($event, "#XTCMERGED")')
-      i.zmdi.zmdi-circle.live-indicator(ng-if='vm.live(channel) === "live"')
-      i.zmdi.zmdi-replay.rerun-indicator(ng-if='vm.live(channel) === "rerun"')
       | *MERGED*
-      span.counter {{vm.unread()}}
-      i.zmdi.zmdi-chevron-right.move-right(ng-click='vm.moveRight($event, "#XTCMERGED")')
     md-tab-body
-      chat-output(channel='#XTCMERGED', ng-if='vm.isLoaded("#XTCMERGED")')
+      merged-output
+
   md-tab
     md-tab-label
       i.zmdi.zmdi-plus.zmdi-lg

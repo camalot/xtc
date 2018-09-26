@@ -1,0 +1,55 @@
+.chat-lines(
+  mobx-autorun,
+  ng-class='{"variable-line-height": vm.settings.appearance.variableLineHeight}'
+)
+  .chat-line(
+    ng-repeat='m in vm.messages',
+    class='{{m.deleted ? "deleted" : ""}} {{::vm.messageClassesAsString(m)}}',
+    ng-style='::vm.messageInlineStyles(m)'
+  )
+    span.timestamp.lighter(ng-if='::vm.settings.chat.timestamps')
+      | {{::m.at | date: 'H:mm'}}
+    //- Split the two conditions so that one can be a one-time binding
+    span(ng-if='vm.canModHere()')
+      span.mod-actions(ng-if='::vm.isModableMessage(m)')
+        md-button(ng-if='vm.isPurgeVisible(m)' ng-click='vm.timeout(m, vm.settings.chat.modactions.purge.value)')
+          md-tooltip(md-autohide='') Purge ({{::vm.settings.chat.modactions.purge.value}}s)
+          i.zmdi.zmdi-replay-5
+        md-button(ng-if='vm.isTimeoutVisible(m)' ng-click='vm.timeout(m, vm.settings.chat.modactions.timeout.value)')
+          md-tooltip(md-autohide='') Timeout ({{::vm.settings.chat.modactions.timeout.value}}s)
+          i.zmdi.zmdi-time-restore
+        md-button(ng-if='vm.isBanVisible(m)' ng-click='vm.ban(m)')
+          md-tooltip(md-autohide='') Ban
+          i.zmdi.zmdi-block
+
+    span.badges(ng-if='::m.user')
+      span.badge(
+        ng-repeat='(name, version) in ::m.user.badges',
+        data-title='{{::vm.badgeTitle(name, version)}}',
+        ng-style='::vm.badgeBg(name, version)'
+      )
+      span.badge.ffz(data-title='FFZ Supporter', ng-if='::m.user["ffz_donor"]')
+    span.username(
+      ng-if='::m.user',
+      ng-click='vm.selectUsername(m.user.username)',
+      ng-style='::{color: vm.calculateColor(m.user.color)}'
+    )
+      | {{::m.user['display-name']}}
+      span(ng-if='::vm.displayNameIsDifferent(m)')
+        | ({{::m.user['username']}})
+    span.username(
+      ng-if='::!m.user && m.type === "whisper"',
+      ng-click='vm.selectUsername(m.from)'
+    ) {{::m.from}}
+    i.zmdi.zmdi-chevron-right.whisper-arrow(ng-if='::m.type === "whisper"')
+    span.username(
+      ng-if='::m.type === "whisper"',
+      ng-click='vm.selectUsername(m.to)'
+    ) {{::m.to}}
+    span.separator(
+      ng-if='::m.type === "chat" || m.type === "whisper" || m.type === "cheer"'
+    ) : 
+    span.separator(ng-if='::m.type === "action"')  
+    span.message(ng-bind-html='::vm.trusted(m.message)')
+  .auto-scroll-notice(ng-if='!vm.autoScroll()', ng-click='vm.scrollDown()')
+    | More messages below
